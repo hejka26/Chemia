@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Idle.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/movement.gd" type="Script" id=3]
+[ext_resource path="res://Graphics/circle.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/player_P2.gd" type="Script" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 16.3041
+
+[node name="Player_P2" type="KinematicBody2D"]
+position = Vector2( 0, 0.513336 )
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+initial_state = NodePath("Idle")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
